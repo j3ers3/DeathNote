@@ -1,0 +1,3 @@
+future
+win_unicode_console 
+colorama

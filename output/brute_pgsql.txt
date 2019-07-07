@@ -1,0 +1,25 @@
+# Nmap 7.70 scan initiated Sat Jun  8 15:20:05 2019 as: nmap -sV -Pn --open -oN /Pentest/Scripts/Death/output/brute_pgsql.txt --script pgsql-brute --script-args userdb=/Pentest/PassList/Passwords/Services/oracle/user.txt,passdb=/Pentest/PassList/Passwords/Services/oracle/password.txt -p5432 127.0.0.1
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.00025s latency).
+
+PORT     STATE SERVICE    VERSION
+5432/tcp open  postgresql PostgreSQL DB 9.6.0 or later
+| fingerprint-strings: 
+|   SMBProgNeg: 
+|     SFATAL
+|     VFATAL
+|     C0A000
+|     Munsupported frontend protocol 65363.19778: server supports 1.0 to 3.0
+|     Fpostmaster.c
+|     L2030
+|_    RProcessStartupPacket
+| pgsql-brute: 
+|_  test => Trusted authentication
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port5432-TCP:V=7.70%I=7%D=6/8%Time=5CFB61AB%P=x86_64-apple-darwin17.3.0
+SF:%r(SMBProgNeg,8C,"E\0\0\0\x8bSFATAL\0VFATAL\0C0A000\0Munsupported\x20fr
+SF:ontend\x20protocol\x2065363\.19778:\x20server\x20supports\x201\.0\x20to
+SF:\x203\.0\0Fpostmaster\.c\0L2030\0RProcessStartupPacket\0\0");
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sat Jun  8 15:20:11 2019 -- 1 IP address (1 host up) scanned in 6.32 seconds

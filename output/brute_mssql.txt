@@ -1,0 +1,10 @@
+# Nmap 7.70 scan initiated Fri Jun  7 23:42:53 2019 as: nmap -sV -Pn --open -oN /Pentest/Scripts/Death/output/brute_mssql.txt --script ms-sql-brute --script-args userdb=/Pentest/PassList/Passwords/Services/mssql/user.txt,passdb=/Pentest/PassList/Passwords/Services/mssql/pass_nmap_small.txt -p22 10.10.10.117
+Nmap scan report for 10.10.10.117
+Host is up (0.00063s latency).
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.4p1 Debian 10+deb9u5 (protocol 2.0)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Fri Jun  7 23:43:06 2019 -- 1 IP address (1 host up) scanned in 13.42 seconds

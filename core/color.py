@@ -11,7 +11,7 @@ def set_color():
             import win_unicode_console, colorama
             win_unicode_console.enable()
             colorama.init()
-        except Execption as e:
+        except:
             print("[x] Please pip install win_unicode_console colorama")
             exit(1)
 
@@ -30,7 +30,7 @@ set_color()
 
 
 def good(text):
-    print(cyan + "[+] " + end + blue + text  + end )
+    print(cyan + "[+] " + blue + text + end )
 
 def p_dec(text):
     print("\nDescription:" + blue + text + end )
@@ -39,15 +39,18 @@ def p_pay(text):
     print('Payload:\n' + blue + text + '\n' + end )
 
 def p_modules(text):
-    text2 = text.replace('[', red+'['+end).replace(']', red+']'+end)
-    print(text2 + '\n')
+    for line in text.split('\n'):
+        tag = red + line.split(' ')[0] + ' ' +  end
+        txt = yellow + ' '.join(line.split(' ')[1:]) + end 
+        print(tag+txt)
+    #text2 = text.replace('[', red+'['+end).replace(']', red+']'+end)
+    #print(text2 + '\n')
 
 def p_line(text):
     return purple2 + '[' + red + text + purple2 + ']'
 
 def error(text):
-    print(red + "[x] " + end + blue + text + end )
-
+    print(red + "[!] " + blue + text + end )
 
 def bye():
     print(green + 'Bye   : )' + end )

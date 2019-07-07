@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # encoding:utf8
 from core.show_modules import *
 from util.util import *
@@ -15,7 +15,9 @@ from modules import certutil_module
 from modules import msiexec_module
 from modules import wmic_module
 from modules import msf_module
+from modules import nmap_module
 from modules import other_module
+from modules import persistence_module
 
 
 __say__ = """
@@ -214,7 +216,7 @@ def mshta():
     url = input(line_hta)
     if url == "":
         print("Using Default Cobalt url\n")
-        print("Http Listen-port {0} with Cobalt".format(config.port_cobalt))
+        print("Reverse_https Listen-port {0} with Cobalt".format(config.port_cobalt))
         p_pay(HTA.reverse(config.cobalt_hta))
         print("Http Listen-port {0} with Empire".format(config.port_empire))
         p_pay(HTA.reverse(config.empire_hta))
@@ -436,8 +438,8 @@ def msfvenom():
 
     MSF = msf_module.Shell()
 
-    line = p_line('Death') + p_line('Msfvenom') + yellow + ' $> '
-    line2 = p_line('Death') + p_line('Msfvenom')
+    line = p_line('Death') + p_line('MSFvenom') + yellow + ' $> '
+    line2 = p_line('Death') + p_line('MSFvenom')
     line3 = green + '[LHOST:LPORT]' + yellow + ' $> '
 
     choose = input(line)
@@ -478,6 +480,118 @@ def msfvenom():
     msfvenom()
 
 
+def nmap():
+    Shell = nmap_module.Shell()
+    line = p_line('Death') + p_line('Nmap') + yellow + ' $> '
+    line_ms17 = p_line('Death') + p_line('Nmap') + p_line('MS17-010') + green + '[IPS]' + yellow + ' $> '
+    line_heart = p_line('Death') + p_line('Nmap') + p_line('Heartbleed') + green + '[IPS]' + yellow + ' $> '
+    line2 = p_line('Death') + p_line('Nmap')
+    line3 = green + '[IP:PORT]' + yellow + ' $> '
+
+    choose = input(line)
+
+    if choose == "1":
+        Shell.check_ms17_010(input(line_ms17))
+
+    elif choose == "2":
+        Shell.check_heartbleed(input(line_heart))
+
+    elif choose == "3":
+        ip_port = input(line2 + p_line('FTP') + line3)
+        Shell.brute(ip_port.split(':')[0], ip_port.split(':')[1], 'ftp')
+
+    elif choose == "4":
+        ip_port = input(line2 + p_line('SSH') + line3)
+        Shell.brute(ip_port.split(':')[0], ip_port.split(':')[1], 'ssh', 1)
+
+    elif choose == "5":
+        ip_port = input(line2 + p_line('TELNET') + line3)
+        Shell.brute(ip_port.split(':')[0], ip_port.split(':')[1], 'telnet')
+
+    elif choose == "6":
+        ip_port = input(line2 + p_line('MYSQL') + line3)
+        Shell.brute(ip_port.split(':')[0], ip_port.split(':')[1], 'mysql')
+
+    elif choose == "7":
+        ip_port = input(line2 + p_line('MSSQL') + line3)
+        Shell.brute(ip_port.split(':')[0], ip_port.split(':')[1], 'mssql')
+
+    elif choose == "8":
+        ip_port = input(line2 + p_line('ORACLE') + line3)
+        Shell.brute(ip_port.split(':')[0], ip_port.split(':')[1], 'oracle')
+
+    elif choose == "9":
+        ip_port = input(line2 + p_line('POSTGRES') + line3)
+        Shell.brute(ip_port.split(':')[0], ip_port.split(':')[1], 'postgres')
+
+    elif choose == "10":
+        ip_port = input(line2 + p_line('MONGODB') + line3)
+        Shell.brute(ip_port.split(':')[0], ip_port.split(':')[1], 'mongodb')
+
+    elif choose == "11":
+        ip_port = input(line2 + p_line('REDIS') + line3)
+        Shell.brute(ip_port.split(':')[0], ip_port.split(':')[1], 'redis')
+
+    elif choose == "12":
+        ip_port = input(line2 + p_line('VM') + line3)
+        Shell.brute(ip_port.split(':')[0], ip_port.split(':')[1], 'vmauthd')
+
+    elif choose == "13":
+        ip_port = input(line2 + p_line('SMB') + line3)
+        Shell.brute(ip_port.split(':')[0], ip_port.split(':')[1], 'smb')
+
+    elif choose == "14":
+        ip_port = input(line2 + p_line('RDP') + line3)
+        Shell.brute(ip_port.split(':')[0], ip_port.split(':')[1], 'rdp')
+
+    elif choose == "help":
+        clear()
+        nmap_modules()
+
+    elif choose == "back":
+        main()
+
+    elif choose in ('exit', '6', 'quit', 'q'):
+        bye()
+
+    else:
+        os.system(choose)
+        nmap()
+
+    nmap()
+
+
+def persistence():
+    Shell = persistence_module.Shell()
+    line = p_line('Death') + p_line('Persistence') + yellow + ' $> '
+
+    choose = input(line)
+
+    if choose == "1":p_dec(Shell.SSHKey())
+
+    elif choose == "2":p_dec(Shell.AddUser())
+
+    elif choose == "3":p_dec(Shell.Crontab())
+
+    elif choose == "4":p_dec(Shell.Startup())
+
+    elif choose == "5":p_dec(Shell.Ln())
+
+    elif choose == "7":p_dec(Shell.Shift())
+
+    elif choose == "9":p_dec(Shell.Schtasks())
+
+    elif choose == "back":main()
+
+    elif choose == "help":clear();persistence_modules()
+
+    elif choose in ('exit', '12', 'quit', 'q'):bye()
+
+    else:persistence()
+
+    persistence()
+
+
 
 def main():
 
@@ -513,6 +627,19 @@ def main():
         print(banner.msfvenom)
         msf_modules()
         msfvenom()
+
+    elif main_choice == "6":
+        clear()
+        print(banner.nmap)
+        nmap_modules()
+        nmap()
+
+    elif main_choice == "7":
+        clear()
+        print(banner.persistence)
+        persistence_modules()
+        persistence()
+
 
     elif main_choice == "":
         main()

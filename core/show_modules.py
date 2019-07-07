@@ -8,9 +8,10 @@ def show_modules():
 [2] Linux Reverse Shell                 
 [3] PowerShell Attack
 [4] Python Reverse Shell 
-[5] Msfvenom Payload
-[6] Persistence
-[7] Exit
+[5] MSFvenom Payload
+[6] Brute Scan
+[7] Persistence and Backdoor
+[8] Exit
 
 -----------------------------------------------------""")
 
@@ -103,4 +104,34 @@ def msf_modules():
 [6] exit
 
 -----------------------------------------------------""")
+
+
+def nmap_modules():
+    p_modules("""
+-----------------------------------------------------
+[1] Check MS17-010          [9] Brute Pgsql
+[2] Check Heartbleed        [10] Brute Mongodb
+[3] Brute FTP               [11] Brute Redis
+[4] Brute SSH               [12] Brute Vmauthd
+[5] Brute Telnet            [13] Brute SMB
+[6] Brute Mysql             [14] Brute RDP
+[7] Brute Mssql             [15] What Is Port
+[8] Brute Oracle            [16] exit
+
+-----------------------------------------------------""")
+
+
+def persistence_modules():
+    p_modules("""
+-----------------------------------------------------
+[1] Linux SSHKey            [7] Windows Shift Backdoor
+[2] Linux AddUser           [8] Windows AddUser
+[3] Linux Crontab           [9] Windows Schtasks
+[4] Linux Startup           [10] Windows Startup
+[5] Linux ln Backdoor       [11] Windows Webshell
+[6] Linux Webshell          [12] Exit                            
+
+-----------------------------------------------------""")
+
+
 

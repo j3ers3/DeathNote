@@ -3,7 +3,7 @@
 # 
 #
 
-lhost = "118.24.63.73"
+lhost = "1.1.1.1"
 
 port_cobalt = 442
 port_empire = 8888

@@ -1,24 +1,23 @@
 # encoding: utf-8
 from .color import *
+import random
 
 __author__ = "whois"
-__update__ = "2019/3/20"
-__version__ = "1.1"
+__create__ = "2019/04/04"
+__update__ = "2020/02/20"
+__version__ = "1.4"
 
 
 def banner_main():
     ston = blue + "[=" + end
     ston2 = blue + "=]" + end
-    #print "" #
-    print("\t\t->>" + ston + green + "="*20 + ston2 + "->>" + end) 
-    print("\tMMMMMM---==" + ston + "Version : " + red + __version__ + end) 
-    print("\tMMMMMM---==" + ston + "Powered By : " + cyan + __author__ + end) 
-    print("\t\t<<-" + ston + "Update Date : [" + red + __update__ + end + "]") 
+    print("\t\t->>" + ston + green + "=" * 20 + ston2 + "->>" + end)
+    print("\tMMMMMM---==" + ston + "Version : " + red + __version__ + end)
+    print("\tMMMMMM---==" + ston + "Powered By : " + cyan + __author__ + end)
+    print("\t\t<<-" + ston + "Update Date : [" + red + __update__ + end + "]")
 
 
 class banner:
-
-
     windows = red + """
                       ..:::::::::..
                   ..:::aad8888888baa:::..
@@ -40,8 +39,7 @@ class banner:
             `::::::::88::88::P::::88::::::::'
               `::::::88::88:::::::88::::::'
                  ``:::::::::::::::::::''
-                      ``:::::::::''""" + end
-
+                      ``:::::::::''\n""" + end
 
     py = green + """
  ____             ____  _          _ _ 
@@ -51,14 +49,12 @@ class banner:
 |_|    \__, |    |____/|_| |_|\___|_|_|
        |___/                           \n\n""" + end
 
-
     wmic = yellow + """
 __        __         _           _   _            _
 \ \      / / __ ___ (_) ___     | | | | __ _  ___| | __
  \ \ /\ / / '_ ` _ \| |/ __|____| |_| |/ _` |/ __| |/ /
   \ V  V /| | | | | | | (_|_____|  _  | (_| | (__|   <
    \_/\_/ |_| |_| |_|_|\___|    |_| |_|\__,_|\___|_|\_\\\n""" + end
-
 
     ban = cyan + """
                            ______    
@@ -72,18 +68,16 @@ __        __         _           _   _            _
       (_)\@8@8{}<________________________________________>""" + cyan + """
              )_/         \ IIIIII /                    
              (@           --------                      \n""" + end
-                                         
 
-    linux = red + """
+    linux = purple2 + """
 IIIIII    dTb.dTb        _.---._
   II     4'  v  'B   .'"".'/|\`.""'.
   II     6.     .P  :  .' / | \ `.  :
   II     'T;. .;P'  '.'  /  |  \  `.'
   II      'T; ;P'    `. /   |   \ .'
 IIIIII     'YvP'       `-.__|__.-'
-
-I love shells --egypt\n\n""" + end
-
+""" + blue + """
+I love shells --egypt\n""" + end
 
     ps = red + """
 
@@ -100,8 +94,6 @@ M
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n""" + end
-
-
 
     msfvenom = blue + """
 
@@ -126,25 +118,42 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n""" + end
                     ,dOd,
                       .\n""" + end
 
+    nmap = red + """
+ ███▄    █  ███▄ ▄███▓ ▄▄▄       ██▓███  
+ ██ ▀█   █ ▓██▒▀█▀ ██▒▒████▄    ▓██░  ██▒
+▓██  ▀█ ██▒▓██    ▓██░▒██  ▀█▄  ▓██░ ██▓▒
+▓██▒  ▐▌██▒▒██    ▒██ ░██▄▄▄▄██ ▒██▄█▓▒ ▒
+▒██░   ▓██░▒██▒   ░██▒ ▓█   ▓██▒▒██▒ ░  ░
+░ ▒░   ▒ ▒ ░ ▒░   ░  ░ ▒▒   ▓▒█░▒▓▒░ ░  ░
+░ ░░   ░ ▒░░  ░      ░  ▒   ▒▒ ░░▒ ░     
+   ░   ░ ░ ░      ░     ░   ▒   ░░       
+         ░        ░         ░  ░    """ + end
+
+    persistence = darkcyan + """
+    _                      _______                      _
+ _dMMMb._              .adOOOOOOOOOba.              _,dMMMb_
+dP'  ~YMMb            dOOOOOOOOOOOOOOOb            aMMP~  `Yb
+V      ~"Mb          dOOOOOOOOOOOOOOOOOb          dM"~      V
+         `Mb.       dOOOOOOOOOOOOOOOOOOOb       ,dM'
+          `YMb._   |OOOOOOOOOOOOOOOOOOOOO|   _,dMP'
+     __     `YMMM| OP'~"YOOOOOOOOOOOP"~`YO |MMMP'     __
+   ,dMMMb.     ~~' OO     `YOOOOOP'     OO `~~     ,dMMMb.
+_,dP~  `YMba_      OOb      `OOO'      dOO      _aMMP'  ~Yb._
+            `YMMMM\`OOOo     OOO     oOOO'/MMMMP'
+    ,aa.     `~YMMb `OOOb._,dOOOb._,dOOO'dMMP~'       ,aa.
+  ,dMYYMba._         `OOOOOOOOOOOOOOOOO'          _,adMYYMb.
+ ,MP'   `YMMba._      OOOOOOOOOOOOOOOOO       _,adMMP'   `YM.
+ MP'        ~YMMMba._ YOOOOPVVVVVYOOOOP  _,adMMMMP~       `YM
+ YMb           ~YMMMM\`OOOOI`````IOOOOO'/MMMMP~           dMP
+  `Mb.           `YMMMb`OOOI,,,,,IOOOO'dMMMP'           ,dM'
+    `'                  `OObNNNNNdOO'                   `'
+                          `~OOOOO~'\n""" + end
 
 
-    nmap = yellow + """
-                             
-   (                 )       
- ( )\  (      (   ( /(   (   
- )((_) )(    ))\  )\()) ))\\  
-((_)_ (()\  /((_)(_))/ /((_) 
- | _ ) ((_)(_))( | |_ (_))   
- | _ \| '_|| || ||  _|/ -_)  
- |___/|_|   \_,_| \__|\___|\n""" + end
+def print_banner():
+    logo = [banner.windows, banner.ban, banner.ps, banner.persistence, banner.msfvenom, banner.linux]
+    print(random.choice(logo))
 
 
-    persistence = yellow + """
-   _____              _     _                      
- |  __ \            (_)   | |                     
- | |__) |__ _ __ ___ _ ___| |_ ___ _ __   ___ ___ 
- |  ___/ _ \ '__/ __| / __| __/ _ \ '_ \ / __/ _ \\
- | |  |  __/ |  \__ \ \__ \ ||  __/ | | | (_|  __/
- |_|   \___|_|  |___/_|___/\__\___|_| |_|\___\___|\n""" + end
-
-
+def ver():
+    print(__version__)

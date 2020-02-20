@@ -1,6 +1,7 @@
 # encoding: utf8
 from .config import *
 
+
 class Shell:
     def __init__(self):
         self.info = {

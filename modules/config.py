@@ -3,12 +3,13 @@
 # 
 #
 
-lhost = "1.1.1.1"
+lhost = ""
 
 port_cobalt = 442
 port_empire = 8888
 port_msf    = 4444
 
+# cobalt strite
 cobalt_powershell = "http://{0}:65530/a".format(lhost)
 cobalt_regsvr32   = "http://{0}:65531/a".format(lhost)
 cobalt_bitsadmin  = "http://{0}:65532/a".format(lhost)
@@ -21,6 +22,7 @@ cobalt_dll        = "http://{0}/evil/c32.dll".format(lhost)
 msf_hta           = "http://{0}/evil/msf.hta".format(lhost)
 msf_msi           = "http://{0}/evil/msi.png".format(lhost)
 
+# empire
 empire_hta        = "http://{0}/evil/empire.hta".format(lhost)
 
 

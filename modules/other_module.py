@@ -8,24 +8,6 @@ class Shell:
             'Update': '2019/3/09',
         }
 
-        self.desc_msbuild = """
-基于白名单的方式执行payload - msbuild
-
-MSBuild 是 Microsoft Build Engine 的缩写，代表 Microsoft 和 Visual Studio的新的生成平台。
-
-Windows 7默认位置
-C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\msbuild.exe
-
-支持meterpreter和Cobalt
-
-执行：
-%WINDIR%\\Microsoft.NET\\Framework\\v4.0.30319\\MSBuild.exe payload.xml
-
-
-测试平台：
-
-"""
-
 
         self.desc_jsc = """
 基于白名单的方式执行payload - jsc

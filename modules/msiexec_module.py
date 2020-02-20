@@ -18,6 +18,5 @@ Msi file:
 
 """
 
-
     def reverse(self, url):
         return "msiexec /q /i {0}".format(url)

@@ -1,5 +1,5 @@
 # encoding: utf8
-from .config import *
+from config import *
 
 
 class Shell:

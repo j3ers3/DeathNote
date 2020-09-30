@@ -50,7 +50,19 @@ class Shell:
 
         }
 
-        self.output = '/Pentest/Scripts/Death/output/'
+        self.output = 'output/'
+
+        self.port_list = {
+            21: "ftp",
+            22: "ssh",
+            23: "telnet",
+            25: "smap",
+            513: "rlogin",
+            873: "rsyn",
+            5631: "pcanywhere",
+            27017: "mongodb",
+            6379: "redis",
+        }
 
     def check_ms17_010(self, ip):
         command = "nmap -v -T4 -sV -Pn --open --script smb-vuln-ms17-010 -p445 {0}".format(ip)
@@ -64,29 +76,33 @@ class Shell:
 
     def check_dns_zone(self, ip):
         command = "nmap -sV -Pn --open --script dns-zone-transfer -v -p53 {0}".format(ip)
+        command2 = "dig axfr {}".format(ip)
+        print(red + command + "\n" + command2 + end + "\n")
+        #os.system(command)
+
+    def nmap_bootstrap(self):
+        command = "nmap -sV -T4 -Pn -p- --open --stylesheet nmap-bootstrap.xsl 1.1.1.1 -oX scan.html"
         print(red + command + end + "\n")
-        os.system(command)
 
     def brute(self, ip, port, server, thread=4):
         """
-            nmap 对爆破有点差，mssql需要小字典，大了就失败；但是在服务器只有一个nmap时可用。
-            hydra对ssh用单线程比较好。
+        nmap 对爆破有点差，mssql需要小字典，大了就失败；但是在服务器只有一个nmap时可用。
+        hydra对ssh用单线程比较好。
         """
         user_dict = server + '_u'
         pass_dict = server + '_p'
 
         # 对服务进行判断，取正确的脚本名字
         if server == 'mssql':
-            nmap_server = 'ms-sql'
-            medusa_server = 'mssql'
+            nmap_server, medusa_server = 'ms-sql', 'mssql'
         elif server == 'smb':
-            medusa_server = 'smbnt'
-            nmap_server = 'smb'
+            medusa_server, nmap_server = 'smbnt', 'smb'
+        # 不适用的模块
+        elif server == 'redis':
+            pass
+
         else:
             nmap_server = medusa_server = server
-
-        if server == 'redis':
-            pass
 
         command = "nmap -sV -Pn --open -oN '{0}brute_{5}.txt' --script {5}-brute --script-args 'userdb={1},passdb={2}' {3} -p{4}".format(
             self.output, self.txt[user_dict], self.txt[pass_dict], ip, port, nmap_server)
@@ -97,32 +113,5 @@ class Shell:
         command3 = "medusa -U {0} -P {1} -h {2} -n {3} -M {4} -v 4".format(self.txt[user_dict], self.txt[pass_dict], ip,
                                                                            port, medusa_server)
 
-        print(
-            red + "\n[1] " + blue + command + "\n\n" + red + "[2] " + blue + command2 + "\n\n" + red + "[3] " + blue + command3 + "\n\n" + red + "[4] " + blue + "pass\n" + end)
+        print(red + "\n[1] " + blue + command + "\n\n" + red + "[2] " + blue + command2 + "\n\n" + red + "[3] " + blue + command3 + "\n\n" + end)
 
-        choose = input("[=] Please Choose Num: ")
-
-        try:
-            if choose == 1:
-                os.system(command)
-            elif choose == 2:
-                os.system(command2)
-            elif choose == 3:
-                os.system(command3)
-            else:
-                pass
-        except:
-            pass
-
-    def map():
-        default_port = {
-            "ftp": 21,
-            "ssh": 22,
-            "telnet": 23,
-            "smap": 25,
-            "rlogin": 513,
-            "rsyn": 873,
-            "pcanywhere": 5631,
-            "mongodb": 27017,
-            "redis": 6379,
-        }

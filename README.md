@@ -1,65 +1,54 @@
-# DeathNote - Reverse Shell Cheat Sheet 
+# DeathNote - Pentest Cheat Sheet 
 
-一个用于反弹shell的Cheat Sheet和后渗透的帮助笔记框架.
+Pentest Cheat Sheet （懒人渗透笔记）
 
-![Stage](https://img.shields.io/badge/Release-STABLE-brightgreen.svg) [![Python 2.7](https://img.shields.io/badge/Python-2.7-yellow.svg)](http://www.python.org/download/) [![Python 3.7](https://img.shields.io/badge/Python-3.7-yellow.svg)](http://www.python.org/download/) ![Build Status](https://img.shields.io/badge/Version-1.0-red.svg)
+![Beta](https://img.shields.io/badge/Release-BETA-brightgreen.svg) [![Python 2.7](https://img.shields.io/badge/Python-2.7-yellow.svg)](http://www.python.org/download/) [![Python 3.7](https://img.shields.io/badge/Python-3.7-yellow.svg)](http://www.python.org/download/) ![Build Status](https://img.shields.io/badge/Version-1.6-red.svg)
 
-![main](./pic/1.png)
+![-w770](media/16013729755637.jpg)
 
-![windows](./pic/2.png)
-![powershell](./pic/4.png)
-![use](./pic/3.png)
+
+![-w754](media/16013732304757.jpg)
+
+![-w754](media/16013733824390.jpg)
 
 
 ### Function
-- windows 基于白名单的反弹shell及后渗透攻击
+- Reverse Shell Cheat Sheet 
 
-- linux 反弹shell
+- PowerShell Cheat Sheet
 
-- powershell 攻击模块
+- AD Cheat Sheet
 
-- python 反弹shell
+- Brute Cheat Sheet
 
-- msfvenom 查询
+- Persistence Cheat Sheet
 
 
 ### Install
 ```
-兼容py2和py3
+支持py2和py3
 
 git clone https://github.com/j3ers3/DeathNote
 
 cd DeathNote
 
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 
-python death.py
+python3 death.py
 ```
 
 ### Config
-配置modules/config.py文件
-![config](./pic/config.png)
+配置config.py文件
 
-> 修改lhost及port，可以使用默认配置，无需再输入url
+![-w986](media/16014330583852.jpg)
 
-![no input](./pic/5.png)
+> 修改LHOST及LPORT，可以使用默认配置，无需再输入url
 
 
 ### Help
-```    
-    Command           Description
-    -------           -----------
-    help              Displays the help menu.
-    list              Lists modules.
-    info              Displays information about one modules.
-    banner            Display banner.
-    version           Show the framework version.
-    clear             Clear.
-    back              Move back from the current context.
-    exit              Exit DeathNote.
-    !                 Execute Command
-    q                 Exit DeathNote.
-```
+
+![-w754](media/16014334668980.jpg)
+
 
 ### Donations
 * XMR: `498AoZRwfC11Fa4LwAyVVp3wRD4Zyf1e1HziegczeWeSYVVTZ8gw8CoNPm5yhY91tkDqDMBg6A5KUfyowMtdkQDrDxE5aVN`

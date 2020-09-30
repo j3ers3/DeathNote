@@ -4,8 +4,8 @@ import random
 
 __author__ = "whois"
 __create__ = "2019/04/04"
-__update__ = "2020/02/20"
-__version__ = "1.4"
+__update__ = "2020/09/23"
+__version__ = "1.6"
 
 
 def banner_main():
@@ -49,7 +49,7 @@ class banner:
 |_|    \__, |    |____/|_| |_|\___|_|_|
        |___/                           \n\n""" + end
 
-    wmic = yellow + """
+    wmi = yellow + """
 __        __         _           _   _            _
 \ \      / / __ ___ (_) ___     | | | | __ _  ___| | __
  \ \ /\ / / '_ ` _ \| |/ __|____| |_| |/ _` |/ __| |/ /
@@ -130,28 +130,48 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n""" + end
          ░        ░         ░  ░    """ + end
 
     persistence = darkcyan + """
-    _                      _______                      _
- _dMMMb._              .adOOOOOOOOOba.              _,dMMMb_
-dP'  ~YMMb            dOOOOOOOOOOOOOOOb            aMMP~  `Yb
-V      ~"Mb          dOOOOOOOOOOOOOOOOOb          dM"~      V
-         `Mb.       dOOOOOOOOOOOOOOOOOOOb       ,dM'
-          `YMb._   |OOOOOOOOOOOOOOOOOOOOO|   _,dMP'
-     __     `YMMM| OP'~"YOOOOOOOOOOOP"~`YO |MMMP'     __
-   ,dMMMb.     ~~' OO     `YOOOOOP'     OO `~~     ,dMMMb.
-_,dP~  `YMba_      OOb      `OOO'      dOO      _aMMP'  ~Yb._
-            `YMMMM\`OOOo     OOO     oOOO'/MMMMP'
-    ,aa.     `~YMMb `OOOb._,dOOOb._,dOOO'dMMP~'       ,aa.
-  ,dMYYMba._         `OOOOOOOOOOOOOOOOO'          _,adMYYMb.
- ,MP'   `YMMba._      OOOOOOOOOOOOOOOOO       _,adMMP'   `YM.
- MP'        ~YMMMba._ YOOOOPVVVVVYOOOOP  _,adMMMMP~       `YM
- YMb           ~YMMMM\`OOOOI`````IOOOOO'/MMMMP~           dMP
-  `Mb.           `YMMMb`OOOI,,,,,IOOOO'dMMMP'           ,dM'
-    `'                  `OObNNNNNdOO'                   `'
-                          `~OOOOO~'\n""" + end
+                       _______                      
+                   .adOOOOOOOOOba.              
+                  dOOOOOOOOOOOOOOOb           
+                 dOOOOOOOo oOOOOOOOb               
+                dOOOOOOOO   OOOOOOOOb       
+               |OOOOOOOOOo oOOOOOOOOO|   
+             | OP'~"YOOOOOOOOOOOP"~`YO |  
+             ' OO     `YOOOOOP'     OO `     
+               OOb      `OOO'      dOO      
+              \`OOOo     OOO     oOOO'/
+                `OOOb._,dOOOb._,dOOO'     
+                 `OOOOOOOOOOOOOOOOO'         
+                  OOOOOOOOOOOOOOOOO       
+                  YOOOOPVVVVVYOOOOP       
+                  `OOOOI`````IOOOOO       
+                   `OOOI,,,,,IOOOO         
+                    `OObNNNNNdOO'                  
+                      `~OOOOO~'\n""" + end
 
+
+    tips = green + """
+
+                                   8
+                        .,,aadd88P=8=Y88bbaa,,.
+                  .,ad88888P:a8P:d888b:Y8a:Y88888ba,.
+              ,ad888888P:a8888:a8888888a:8888a:Y888888ba,
+           ,a8888888:d8888888:d888888888b:8888888b:8888888a,
+        ,a88888888:d88888888:d88888888888b:88888888b:88888888a,
+      ,d88888888:d888888888:d8888888888888b:888888888b:88888888b,
+    ,d88888888:d8888888888I:888888888888888:I8888888888b:88888888b,
+  ,d888888888:d88888888888:88888888888888888:88888888888b:888888888b,
+ d8888888888:I888888888888:88888888888888888:888888888888I:8888888888b
+d8P"'   `"Y8:8P"'     `"Y8:8P"'    8    `"Y8:8P"'     `"Y8:8P"'   `"Y8b
+"           "             "        8        "             "           "
+                                   8            
+                                   8                by whois
+                                   8
+                                   8
+"""
 
 def print_banner():
-    logo = [banner.windows, banner.ban, banner.ps, banner.persistence, banner.msfvenom, banner.linux]
+    logo = [banner.windows, banner.ban, banner.ps, banner.persistence, banner.msfvenom, banner.linux, banner.tips]
     print(random.choice(logo))
 
 

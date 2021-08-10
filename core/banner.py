@@ -2,10 +2,10 @@
 from .color import *
 import random
 
-__author__ = "whois"
+__author__ = "nul1"
 __create__ = "2019/04/04"
-__update__ = "2020/09/23"
-__version__ = "1.6"
+__update__ = "2021/08/10"
+__version__ = "1.8"
 
 
 def banner_main():
@@ -149,7 +149,6 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n""" + end
                     `OObNNNNNdOO'                  
                       `~OOOOO~'\n""" + end
 
-
     tips = green + """
 
                                    8
@@ -165,13 +164,46 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n""" + end
 d8P"'   `"Y8:8P"'     `"Y8:8P"'    8    `"Y8:8P"'     `"Y8:8P"'   `"Y8b
 "           "             "        8        "             "           "
                                    8            
-                                   8                by whois
+                                   8                by nul1
                                    8
                                    8
-"""
+""" + end
+
+    elevate = blue + """
+███████╗██╗     ███████╗██╗   ██╗ █████╗ ████████╗███████╗
+██╔════╝██║     ██╔════╝██║   ██║██╔══██╗╚══██╔══╝██╔════╝
+█████╗  ██║     █████╗  ██║   ██║███████║   ██║   █████╗  
+██╔══╝  ██║     ██╔══╝  ╚██╗ ██╔╝██╔══██║   ██║   ██╔══╝  
+███████╗███████╗███████╗ ╚████╔╝ ██║  ██║   ██║   ███████╗
+╚══════╝╚══════╝╚══════╝  ╚═══╝  ╚═╝  ╚═╝   ╚═╝   ╚══════╝""" + end
+
+    ghost = red + """
+                   ...
+                 ;::::;   
+               ;::::; :;    
+             ;:::::'   :;
+            ;:::::;     ;.
+           ,:::::'       ;           OOO\\
+           ::::::;       ;          OOOOO\\
+           ;:::::;       ;         OOOOOOOO
+          ,;::::::;     ;'         / OOOOOOO
+        ;:::::::::`. ,,,;.        /  / DOOOOOO
+      .';:::::::::::::::::;,     /  /     DOOOO
+     ,::::::;::::::;;;;::::;,   /  /        DOOO
+    ;`::::::`'::::::;;;::::: ,#/  /          DOOO
+    :`:::::::`;::::::;;::: ;::#  /            DOOO
+    ::`:::::::`;:::::::: ;::::# /              DOO
+    `:`:::::::`;:::::: ;::::::#/               DOO
+     :::`:::::::`;; ;:::::::::##                OO
+     ::::`:::::::`;::::::::;:::#                OO
+     `:::::`::::::::::::;'`:;::#                O
+      `:::::`::::::::;' /  / `:#
+       ::::::`:::::;'  /  /   `#""" + end
+
 
 def print_banner():
-    logo = [banner.windows, banner.ban, banner.ps, banner.persistence, banner.msfvenom, banner.linux, banner.tips]
+    logo = [banner.windows, banner.ban, banner.ps, banner.persistence, banner.msfvenom, banner.linux, banner.tips,
+            banner.ghost]
     print(random.choice(logo))
 
 

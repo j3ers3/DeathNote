@@ -7,7 +7,7 @@ class Shell:
     def __init__(self):
         self.info = {
             'Name': 'Nmap',
-            'Author': 'whois',
+            'Author': 'nul1',
             'Update': '2019/5/31',
         }
 

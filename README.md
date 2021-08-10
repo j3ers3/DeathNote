@@ -2,7 +2,7 @@
 
 Pentest Cheat Sheet （懒人渗透笔记）
 
-![Beta](https://img.shields.io/badge/Release-BETA-brightgreen.svg) [![Python 2.7](https://img.shields.io/badge/Python-2.7-yellow.svg)](http://www.python.org/download/) [![Python 3.7](https://img.shields.io/badge/Python-3.7-yellow.svg)](http://www.python.org/download/) ![Build Status](https://img.shields.io/badge/Version-1.6-red.svg)
+![Beta](https://img.shields.io/badge/Release-BETA-brightgreen.svg) [![Python 2.7](https://img.shields.io/badge/Python-2.7-yellow.svg)](http://www.python.org/download/) [![Python 3.7](https://img.shields.io/badge/Python-3.7-yellow.svg)](http://www.python.org/download/) ![Build Status](https://img.shields.io/badge/Version-1.8-red.svg)
 
 ![-w770](media/16013729755637.jpg)
 

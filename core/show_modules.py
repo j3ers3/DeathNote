@@ -1,6 +1,7 @@
 # encoding: utf-8
 from .color import *
 
+
 def show_modules():
     p_modules("""
 -----------------------------------------------------
@@ -10,14 +11,15 @@ def show_modules():
 [4]  AD Cheat Sheet
 [5]  MSFvenom Payload
 [6]  Brute Cheat Sheet
-[7]  Persistence
-[8]  Clean up
-[9]  Exit
+[7]  Privilege Escalation
+[8]  Persistence and Backdoors
+[9]  Docker K8S Cheat Sheet
+[10] Exit
 
 -----------------------------------------------------""")
 
 
-def powershell_modules():
+def show_powershell_modules():
     p_modules("""
 -----------------------------------------------------
 [1] Reverse Shell
@@ -33,7 +35,7 @@ def powershell_modules():
 ----------------------------------------------------""")
 
 
-def python_modules():
+def show_python_modules():
     p_modules("""
 -----------------------------------------------------
 [1] Simple Reverse Shell
@@ -45,7 +47,7 @@ def python_modules():
 -----------------------------------------------------""")
 
 
-def linux_modules():
+def show_linux_modules():
     p_modules("""
 -----------------------------------------------------
 [1] Bash Reverse Shell
@@ -62,7 +64,7 @@ def linux_modules():
 -----------------------------------------------------""")
 
 
-def windows_modules():
+def show_windows_modules():
     p_modules("""
 -----------------------------------------------------
 [1] WMI Attack
@@ -77,7 +79,7 @@ def windows_modules():
 -----------------------------------------------------""")
 
 
-def wmi_modules():
+def show_wmi_modules():
     p_modules("""
 -----------------------------------------------------
 [1] Remote Command
@@ -89,7 +91,7 @@ def wmi_modules():
 -----------------------------------------------------""")
 
 
-def msf_modules():
+def show_msf_modules():
     p_modules("""
 -----------------------------------------------------
 [1] Meterpreter Reverse Windows
@@ -102,7 +104,7 @@ def msf_modules():
 -----------------------------------------------------""")
 
 
-def nmap_modules():
+def show_nmap_modules():
     p_modules("""
 -----------------------------------------------------
 [1]  Check MS17-010          [10] Brute Oracle
@@ -118,7 +120,7 @@ def nmap_modules():
 -----------------------------------------------------""")
 
 
-def tips_modules():
+def show_tips_modules():
     p_modules("""
 -----------------------------------------------------
 [1] Windows Gather
@@ -131,7 +133,7 @@ def tips_modules():
 -----------------------------------------------------""")
 
 
-def persistence_modules():
+def show_persistence_modules():
     p_modules("""
 -----------------------------------------------------
 [1]  Linux SSHKey            [7]  Windows Shift Backdoor
@@ -146,12 +148,43 @@ def persistence_modules():
 -----------------------------------------------------""")
 
 
-def clean_up():
+def show_elevate_config_modules():
     p_modules("""
 -----------------------------------------------------
-            
-
+[1] 服务配置错误
+[2] AlwaysInstallElevated
+[3] 可信任服务路径漏洞
+[4] 自动安装配置文件
+[5] 计划任务
 -----------------------------------------------------""")
 
 
+def show_elevate_modules():
+    p_modules("""
+-----------------------------------------------------
+[1] Windows 内核提权
+[2] Windows 系统配置错误提权
+[3] Windows 组策略首选项
+[4] Windows Bypass UAC
+[5] Windows 令牌窃取
+[6] Windows 无凭证
+[7] Linux 内核提权
+[8] Linux SUID
+[6] Exit
+-----------------------------------------------------""")
+
+
+def show_docker_modules():
+    p_modules("""
+-----------------------------------------------------
+[1] Docker 常用命令
+[2] 判断是否为容器环境
+[3] [Vul] Docker Remote API (2375)
+[4] [Vul] K8s APIServer (8080 6443)
+[5] [Vul] K8s Dashboard 
+[6] [Vul] K8s kubelet (10250)
+[7] [Vul] K8s etcd (2379)
+[8] 容器逃逸
+[9] Exit
+-----------------------------------------------------""")
 

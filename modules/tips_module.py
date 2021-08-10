@@ -3,7 +3,7 @@ class Shell:
     def __init__(self):
         self.info = {
             'Name': '内网信息收集',
-            'Author': 'whois',
+            'Author': 'nul1',
             'Update': '2020/7/06',
         }
 
@@ -83,7 +83,7 @@ class Shell:
     
 2. powershell
     1..1024 | % {echo ((new-object Net.Sockets.TcpClient).Connect("127.0.0.1",$_)) "Port $_ is open!"} 2>$null
-    1..254 | % {echo ((new-object Net.Sockets.TcpClient).Connect("10.67.162.$_",3389)) "10.67.162.$_ i s open!"} 2>$null
+    1..254 | % {echo ((new-object Net.Sockets.TcpClient).Connect("10.10.10.$_",3389)) "10.10.10.$_ i s open!"} 2>$null
     
 3. telnet
     for /l %a in (1,1,254) do start /min /low telnet 192.168.0.%a 3389      

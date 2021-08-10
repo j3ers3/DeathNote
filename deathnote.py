@@ -19,6 +19,8 @@ from modules import msf_module
 from modules import nmap_module
 from modules import tips_module
 from modules import persistence_module
+from modules import elevate_module
+from modules import docker_module
 
 __say__ = """
     渗透测试 备忘录
@@ -80,7 +82,7 @@ def powershell():
         bye()
 
     elif choice == 'list':
-        powershell_modules()
+        show_powershell_modules()
 
     elif choice == 'info':
         print(SHELL.info)
@@ -115,8 +117,9 @@ def python():
         p_dec(SHELL.desc_simple_reverse)
         listen = input(line2)
         try:
-            p_pay(SHELL.simple_reverse(LHOST, port_msf) if listen == '' else p_pay(SHELL.simple_reverse(listen.split(':')[0], listen.split(':')[1])))
-        except:
+            p_pay(SHELL.simple_reverse(LHOST, port_msf) if listen == '' else p_pay(
+                SHELL.simple_reverse(listen.split(':')[0], listen.split(':')[1])))
+        except Execption as e:
             error("Please input ip:port")
 
     elif choice == '2':
@@ -131,7 +134,7 @@ def python():
             try:
                 return_code = SHELL.bcode(listen.split(':')[0], listen.split(':')[1])
                 p_pay(SHELL.meter_reverse().format(bcode=return_code))
-            except:
+            except Execption as e:
                 error("Please input ip:port")
 
     elif choice == '3':
@@ -148,7 +151,7 @@ def python():
         bye()
 
     elif choice == 'list':
-        python_modules()
+        show_python_modules()
 
     elif choice == 'info':
         print(SHELL.info)
@@ -182,16 +185,19 @@ def linux():
     if choice == '1':
         p_dec(SHELL.desc_reverse)
         listen = input(line2)
-        p_pay(SHELL.bash_reverse()) if listen == '' else p_pay(SHELL.bash_reverse(listen.split(':')[0], listen.split(':')[1]))
+        p_pay(SHELL.bash_reverse()) if listen == '' else p_pay(
+            SHELL.bash_reverse(listen.split(':')[0], listen.split(':')[1]))
 
     elif choice == '2':
         p_dec(SHELL.desc_exec_reverse)
         listen = input(line2)
-        p_pay(SHELL.exec_reverse()) if listen == '' else p_pay(SHELL.exec_reverse(listen.split(':')[0], listen.split(':')[1]))
+        p_pay(SHELL.exec_reverse()) if listen == '' else p_pay(
+            SHELL.exec_reverse(listen.split(':')[0], listen.split(':')[1]))
 
     elif choice == '3':
         listen = input(line2)
-        p_pay(SHELL.perl_reverse()) if listen == '' else p_pay(SHELL.perl_reverse(listen.split(':')[0], listen.split(':')[1]))
+        p_pay(SHELL.perl_reverse()) if listen == '' else p_pay(
+            SHELL.perl_reverse(listen.split(':')[0], listen.split(':')[1]))
 
     elif choice == '4':
         p_dec(SHELL.desc_telnet)
@@ -199,11 +205,13 @@ def linux():
 
     elif choice == '5':
         listen = input(line2)
-        p_pay(SHELL.php_reverse()) if listen == '' else p_pay(SHELL.php_reverse(listen.split(':')[0], listen.split(':')[1]))
+        p_pay(SHELL.php_reverse()) if listen == '' else p_pay(
+            SHELL.php_reverse(listen.split(':')[0], listen.split(':')[1]))
 
     elif choice == '6':
         listen = input(line2)
-        p_pay(SHELL.ruby_reverse()) if listen == '' else p_pay(SHELL.ruby_reverse(listen.split(':')[0], listen.split(':')[1]))
+        p_pay(SHELL.ruby_reverse()) if listen == '' else p_pay(
+            SHELL.ruby_reverse(listen.split(':')[0], listen.split(':')[1]))
 
     elif choice == '7':
         clear()
@@ -213,7 +221,8 @@ def linux():
     elif choice == '8':
         p_dec(SHELL.desc_back)
         listen = input(line2)
-        p_pay(SHELL.wget_reverse()) if listen == '' else p_pay(SHELL.wget_reverse(listen.split(':')[0], listen.split(':')[1]))
+        p_pay(SHELL.wget_reverse()) if listen == '' else p_pay(
+            SHELL.wget_reverse(listen.split(':')[0], listen.split(':')[1]))
 
     elif choice == '9':
         p_dec(SHELL.linux_tips())
@@ -225,7 +234,7 @@ def linux():
         bye()
 
     elif choice == 'list':
-        linux_modules()
+        show_linux_modules()
 
     elif choice == 'info':
         print(SHELL.info)
@@ -389,7 +398,7 @@ def wmi():
         bye()
 
     elif choice == 'list':
-        wmi_modules()
+        show_wmi_modules()
 
     elif choice == 'info':
         print(SHELL.info)
@@ -420,7 +429,7 @@ def windows():
     if choice == '1':
         clear()
         print(banner.wmi)
-        wmi_modules()
+        show_wmi_modules()
         wmi()
 
     elif choice == '2':
@@ -451,7 +460,7 @@ def windows():
         bye()
 
     elif choice == 'list':
-        windows_modules()
+        show_windows_modules()
 
     elif choice == 'banner':
         print_banner()
@@ -504,7 +513,7 @@ def msfvenom():
         bye()
 
     elif choice == 'list':
-        msf_modules()
+        show_msf_modules()
 
     elif choice == 'info':
         print(SHELL.info)
@@ -606,7 +615,7 @@ def nmap():
         bye()
 
     elif choice == 'list':
-        nmap_modules()
+        show_nmap_modules()
 
     elif choice == 'info':
         print(SHELL.info)
@@ -678,7 +687,7 @@ def persistence():
         bye()
 
     elif choice == 'list':
-        persistence_modules()
+        show_persistence_modules()
 
     elif choice == 'info':
         print(SHELL.info)
@@ -724,7 +733,7 @@ def tips():
         bye()
 
     elif choice == 'list':
-        tips_modules()
+        show_tips_modules()
 
     elif choice == 'info':
         print(SHELL.info)
@@ -747,56 +756,191 @@ def tips():
     tips()
 
 
+def elevate_config():
+    SHELL = elevate_module.ElevateConfig()
+    line = p_line('Death') + p_line('Elevate') + p_line('Config') + yellow + ' $> '
+    choice = input(line)
+
+    if choice == '1':
+        p_dec(SHELL.service_config_error())
+    elif choice == '2':
+        p_dec(SHELL.always_Install_elevated())
+    elif choice == '3':
+        p_dec(SHELL.trusted_service_paths())
+    elif choice == '4':
+        p_dec(SHELL.auto_install_profile())
+    elif choice == '5':
+        p_dec(SHELL.scheduled_task())
+    elif choice == 'back':
+        elevate()
+    elif choice in ('6', 'exit', 'quit', 'q'):
+        bye()
+
+    elevate_config()
+
+
+def elevate():
+    SHELL = elevate_module.Shell()
+    line = p_line('Death') + p_line('Elevate') + yellow + ' $> '
+
+    choice = input(line)
+
+    if choice == '1':
+        p_dec(SHELL.kernal())
+    elif choice == '2':
+        clear()
+        show_elevate_config_modules()
+        elevate_config()
+    elif choice == '3':
+        p_dec(SHELL.gpp())
+    elif choice == '4':
+        p_dec(SHELL.auto_install_profile())
+    elif choice == '5':
+        p_dec(SHELL.scheduled_task())
+    elif choice == 'back':
+        main()
+
+    elif choice in ('6', 'exit', 'quit', 'q'):
+        bye()
+
+    elif choice == 'list':
+        show_elevate_modules()
+
+    elif choice == 'info':
+        print(SHELL.info)
+
+    elif choice == 'help':
+        help()
+
+    elif choice == 'clear':
+        clear()
+
+    elif choice == 'banner':
+        print_banner()
+
+    elif choice == 'version':
+        ver()
+
+    elif '!' in choice:
+        os.system(choice[1:])
+
+    elevate()
+
+
+def docker():
+    SHELL = docker_module.Shell()
+    line = p_line('Death') + p_line('Docker') + yellow + ' $> '
+
+    choice = input(line)
+
+    if choice == '1':
+        p_dec(SHELL.docker_usage)
+
+    elif choice == '2':
+        p_dec(SHELL.docker_is)
+
+    elif choice == '3':
+        p_dec(SHELL.docker_remote_api)
+
+    elif choice == '4':
+        p_dec(SHELL.k8s_apiserver)
+
+    elif choice == '5':
+        p_dec(SHELL.k8s_dashboard)
+
+    elif choice == '6':
+        p_dec(SHELL.k8s_kubelet)
+
+    elif choice == '7':
+        p_dec(SHELL.k8s_etcd)
+
+    elif choice == 'back':
+        main()
+
+    elif choice in ('9', 'exit', 'quit', 'q'):
+        bye()
+
+    elif choice == 'list':
+        show_docker_modules()
+
+    elif choice == 'info':
+        print(SHELL.info)
+
+    elif choice == 'help':
+        help()
+
+    elif choice == 'clear':
+        clear()
+
+    elif choice == 'banner':
+        print_banner()
+
+    elif choice == 'version':
+        ver()
+
+    elif '!' in choice:
+        os.system(choice[1:])
+
+    docker()
+
+
 def main():
     line = p_line('Death') + yellow + ' $> '
     main_choice = input(line)
 
     if main_choice == '1':
         clear()
-        print(banner.windows)
-        banner_main()
-        windows_modules()
+        print(banner.ghost)
+        show_windows_modules()
         windows()
 
     elif main_choice == '2':
         clear()
         print(banner.linux)
-        linux_modules()
+        show_linux_modules()
         linux()
 
     elif main_choice == '3':
         clear()
         print(banner.ps)
-        powershell_modules()
+        show_powershell_modules()
         powershell()
 
     elif main_choice == '4':
         clear()
         print(banner.tips)
-        tips_modules()
+        show_tips_modules()
         tips()
 
     elif main_choice == '5':
         clear()
         print(banner.msfvenom)
-        msf_modules()
+        show_msf_modules()
         msfvenom()
 
     elif main_choice == '6':
         clear()
         print(banner.nmap)
-        nmap_modules()
+        show_nmap_modules()
         nmap()
 
     elif main_choice == '7':
         clear()
-        print(banner.persistence)
-        persistence_modules()
-        persistence()
+        print(banner.elevate)
+        show_elevate_modules()
+        elevate()
 
     elif main_choice == '8':
         clear()
-        clean_up()
+        print(banner.persistence)
+        show_persistence_modules()
+        persistence()
+
+    elif main_choice == '9':
+        clear()
+        print(banner.ghost)
+        show_docker_modules()
+        docker()
 
     elif main_choice == 'help':
         print(banner.ban)

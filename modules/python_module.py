@@ -7,7 +7,7 @@ class Shell:
     def __init__(self):
         self.info = {
             'Name': 'Python Reverse Shell',
-            'Author': 'whois',
+            'Author': 'nul1',
             'Update': '2018/9/15',
         }
 

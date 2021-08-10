@@ -4,7 +4,7 @@ class Shell:
     def __init__(self):
         self.info = {
             'Name': 'msbuild reverse shell',
-            'Author': 'whois',
+            'Author': 'nul1',
             'Update': '2020/02/19',
         }
 
